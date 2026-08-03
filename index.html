@@ -1,1 +1,450 @@
+<!--
+  ============================================
+  Llowye_Shop Landing Page Template
+  © 2026 Llowye_Shop — All Rights Reserved
+  
+  Template ini dilindungi hak cipta. Dilarang:
+  - Menyalin/mendistribusikan ulang tanpa izin
+  - Menjual kembali sebagai produk sendiri
+  - Menghapus watermark & kredit ini
+  
+  Lisensi & penggunaan komersial, hubungi Llowye_Shop.
+  Full license: lihat file LICENSE.txt
+  ============================================
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Llowye</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  #confettiContainer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9998;
+  overflow:hidden;
+}
+ .confetti-piece{
+  position:absolute;
+   width:8px;
+   height:14px;
+  opacity:1;
+  will-change: transform;
+  animation: confettiBurst 1.6s forwards;
+}
+
+.confetti-square{
+  width:5px;
+  height:14px;
+}
+
+.confetti-circle{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+
+.confetti-star{
+  width:12px;
+  height:12px;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+  animation: confettiBurst 1.8s cubic-bezier(0.25,0.8,0.25,1) forwards,
+              twinkle 0.4s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+  0%, 100%{ opacity:1; filter:brightness(1); }
+  50%{ opacity:0.5; filter:brightness(1.8) drop-shadow(0 0 4px currentColor); }
+}
+@keyframes confettiBurst{
+  0%{
+    transform: translate(0,0) rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  40%{
+    transform: translate(calc(var(--dx) * 0.6), var(--dy)) rotate(calc(var(--rot) * 0.5));
+    animation-timing-function: ease-in;
+  }
+  100%{
+    transform: translate(var(--dx), 100vh) rotate(var(--rot));
+  }
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#fff;
+  overflow:hidden;
+}
+
+/*======================
+MAIN CARD
+=======================*/
+
+#mainContent{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  opacity:1;
+  transform:scale(1);
+  background:#fff;
+  overflow-y:auto;
+  padding:0px 0 60px;
+}
+
+.cardWrapper{
+  width:360px;
+  max-width:92%;
+  text-align:center;
+}
+
+.bebek{
+  width:180px;
+  margin-top:-70px;
+  margin-bottom:-40px;
+}
+
+.netflixBox{
+  background:#FCFBD2;
+  border:6px solid #D4F6FC;
+  border-radius:70px;
+  padding:-50px;
+  margin:-15px auto 14px;
+  width:65%;
+}
+
+.netflixTitle .logo{
+  height:150px;
+  margin-top:-20px;
+   margin-bottom:-30px;
+}
+
+.topBar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#FCFBD2;
+  border:10px solid #C8F7F2;
+  border-radius:40px 40px 0 0;
+  padding:8px 16px;
+  margin:0 auto 9px;
+  height:50px;
+  width:100%;
+}
+
+.loveGif{
+  height:130px;
+   margin-top:-20px;
+   margin-bottom:-30px;
+}
+.iconsImg{
+  height:22px;
+  width:auto;
+}
+
+.closeBtn{
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.profileCard{
+  padding:14px;
+  background:#FCFBD2;
+  border:10px solid #C8F7F2;
+  border-radius:0 0 35px 35px;
+  text-align:center;
+  width:100%;
+  margin:-1px 0 2px;
+}
+
+h1{
+  font-family:'Baloo 2',sans-serif;
+  color:#e0195a;
+  font-size:26px;
+  letter-spacing:1px;
+  margin:-10px 0 -10px;
+}
+
+h2{
+  font-family:'Baloo 2',sans-serif;
+  color:#1a1a6e;
+  font-size:20px;
+  font-weight:700;
+  margin:-5px 0 -2px;
+}
+
+.divider{
+  height:5px;
+  background:#fff;
+  width:90%;
+  margin:12px auto;
+  border-radius:3px;
+}
+
+.dividerBottom{
+  margin-top:12px;
+}
+
+.idCard{
+  border:2px solid #d9c2d2;
+  border-radius:10px;
+  overflow:hidden;
+  margin:0 auto 4px;
+  width:65%;
+}
+
+.idCard img{
+  width:100%;
+  display:block;
+}
+
+.arrowDown{
+  color:#ff3b3b;
+  font-size:30px;
+   margin-top:-10px;
+  margin-bottom:-10px;
+}
+.openBtn{
+  display:inline-block;
+  background:#A3EFFF;
+  color:#1a1a6e;
+  font-weight:900;
+  text-decoration:none;
+  padding:12px 25px;
+  border-radius:40px;
+  border:6px solid #fff;
+  box-shadow:0 8px 0 #6bc4ea, 0 10px 15px rgba(0,0,0,.2);
+  transition:.15s;
+  margin-top:-10px;
+  margin-bottom:20px;
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+.openBtn:active{
+  transform:translateY(8px);
+  box-shadow:0 0 0 #2aa9d1;
+}
+@keyframes heartbeat{
+  0%, 100%{ transform: scale(1); }
+  15%{ transform: scale(1.08); }
+  30%{ transform: scale(1); }
+  45%{ transform: scale(1.08); }
+  60%{ transform: scale(1); }
+}
+/*======================
+LEAF LOADER
+=======================*/
+
+#leafLoader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  overflow:hidden;
+}
+#leafKiri, #leafKanan{
+  position:absolute;
+  top:0;
+  height:100%;
+  width:52%;
+  will-change: transform;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #7a0000 0px,
+      #a80000 15px,
+      #d61f1f 30px,
+      #a80000 45px,
+      #7a0000 60px
+    );
+  box-shadow: inset -20px 0 40px rgba(0,0,0,.5), inset 20px 0 40px rgba(0,0,0,.3);
+  filter: blur(0.3px);
+}
+#leafKiri{
+  left:0;
+}
+#leafKanan{
+  right:0;
+}
+#leafKiri.open{
+  animation: curtainLeft 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+#leafKanan.open{
+  animation: curtainRight 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes curtainLeft{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-100%); }
+}
+@keyframes curtainRight{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(100%); }
+}
+@media(max-width:500px){
+  .profileCard{ padding:10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Opening (daun) -->
+<div id="leafLoader">
+  <div id="leafKiri"></div>
+  <div id="leafKanan"></div>
+</div>
+
+  <div id="confettiContainer"></div>
+
+<!-- MAIN -->
+<div id="mainContent">
+
+  <div class="cardWrapper">
+
+    <img src="bebek.gif" class="bebek">
+
+    <div class="netflixBox">
+      <div class="netflixTitle">
+        <img src="netflix.gif" class="logo">
+      </div>
+    </div>
+
+    <div class="topBar">
+      <div class="love"><img src="love.gif" class="loveGif"></div>
+      <a href="https://llowye.github.io/Llowyerecord/" target="_blank">
+  <img src="icons.png" class="iconsImg">
+</a>
+    </div>
+
+    <div class="profileCard">
+
+      <h1>!! HOLA !!</h1>
+      <h2>WELCOME TO MY SHOP</h2>
+
+      <div class="divider"></div>
+
+      <div class="idCard">
+  <a href="https://you-deserve-this-maker.vercel.app/?c=W1si8J%2BMmSIsIkxhdGUgTmlnaHQgQ3VkZGxlcyIsIkJlaW5nIGFuIGFkdWx0IGlzIGxvbmVseS4gU3VrdXJpbiBkZWggbG8uLi4iXSxbIvCfjLEiLCJIZXkgdSEgS2VlcCBzcGlyaXQuIiwiQ3V6IFdlIGh2IHRvbW9ycm93IDRyIGEgcmVhc29uIF5eIl0sWyLwn42cIiwiQXlhbSBNaWUiLCJEaWFtIGJ1a2FuIGJlcmFydGkgbGVtYWgsIHRhcGkgbGFwZXIuIl0sWyLwn6e4IiwiQmlnIGh1ZyIsIlBlb3BsZSBrYWRhbmcgY29tZSBhbmQgcHJldC4uLiJdLFsi8J%2BMvCIsIkJlZ2dlZCIsIkN1a3VwIGFudGFydGlrYSBhamEgeWcgamF1aCwgYW50YXJraXRhIGphbmdhbi4uLiJdXQ%3D%3D" target="_blank">
+    <img src="ktp.gif" alt="license card">
+  </a>
+      </div>
+
+      <div class="divider dividerBottom"></div>
+
+      <div class="arrowDown">﹀</div>
+
+      <a href="https://llowyeshop.carrd.co/" class="openBtn">OPEN</a>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const loader = document.getElementById("leafLoader");
+const main = document.getElementById("mainContent");
+const leafKiri = document.getElementById("leafKiri");
+const leafKanan = document.getElementById("leafKanan");
+
+document.body.style.overflow = "hidden";
+
+function fireConfetti(){
+  const container = document.getElementById("confettiContainer");
+  const colors = ["#ff595e","#ffca3a","#8ac926","#1982c4","#6a4c93","#ff6fb5"];
+  const shapes = ["confetti-square", "confetti-circle", "confetti-star"];
+  const fragment = document.createDocumentFragment();
+
+  for(let i=0;i<100;i++){
+    const piece = document.createElement("div");
+    const shape = shapes[Math.floor(Math.random()*shapes.length)];
+    piece.className = "confetti-piece " + shape;
+
+    const fromLeft = i % 2 === 0;
+    piece.style.left = fromLeft ? "0px" : "auto";
+    piece.style.right = fromLeft ? "auto" : "0px";
+    piece.style.top = (10 + Math.random()*70) + "vh";
+
+    // bintang selalu emas, bentuk lain tetep random warna-warni
+    piece.style.background = (shape === "confetti-star")
+      ? "#FFD700"
+      : colors[Math.floor(Math.random()*colors.length)];
+
+    const distance = (10 + Math.random()*90) + "vw";
+    const dx = fromLeft ? distance : "-" + distance;
+    const dy = "-" + (20 + Math.random()*30) + "vh";
+    piece.style.setProperty("--dx", dx);
+    piece.style.setProperty("--dy", dy);
+    piece.style.setProperty("--rot", (Math.random()*720 - 360) + "deg");
+    piece.style.animationDelay = (Math.random()*0.15) + "s";
+    piece.addEventListener("animationend", ()=> piece.remove());
+    fragment.appendChild(piece);
+  }
+  container.appendChild(fragment);
+}
+// Buka daun kiri & kanan
+setTimeout(()=>{
+  leafKiri.classList.add("open");
+  leafKanan.classList.add("open");
+}, 500);
+
+setTimeout(()=>{
+  fireConfetti();
+}, 2300);
+
+// Hapus loader
+setTimeout(()=>{
+  loader.style.opacity = "0";
+  loader.style.transition = "0.6s ease";
+  setTimeout(()=>{
+    loader.remove();
+    document.body.style.overflow = "auto";
+  }, 600);
+}, 5000);
+
+  function playClickSound(){
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = "square";
+  osc.frequency.value = 800;
+  gain.gain.setValueAtTime(0.4, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.08);
+}
+
+const openBtn = document.querySelector(".openBtn");
+if(openBtn){
+  openBtn.addEventListener("click", ()=>{
+    playClickSound();
+    openBtn.style.animation = "none";
+  });
+}
+const closeBtn = document.querySelector(".closeBtn");
+if(closeBtn){
+  closeBtn.addEventListener("click", ()=>{
+    main.style.display = "none";
+  });
+}
+</script>
+
+</body>
+</html>
