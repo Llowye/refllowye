@@ -24,62 +24,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  #confettiContainer{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9998;
-  overflow:hidden;
-}
- .confetti-piece{
-  position:absolute;
-   width:8px;
-   height:14px;
-  opacity:1;
-  will-change: transform;
-  animation: confettiBurst 1.6s forwards;
-}
-
-.confetti-square{
-  width:5px;
-  height:14px;
-}
-
-.confetti-circle{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-}
-
-.confetti-star{
-  width:12px;
-  height:12px;
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%,
-    79% 91%, 50% 70%, 21% 91%, 32% 57%,
-    2% 35%, 39% 35%
-  );
-  animation: confettiBurst 1.8s cubic-bezier(0.25,0.8,0.25,1) forwards,
-              twinkle 0.4s ease-in-out infinite;
-}
-
-@keyframes twinkle{
-  0%, 100%{ opacity:1; filter:brightness(1); }
-  50%{ opacity:0.5; filter:brightness(1.8) drop-shadow(0 0 4px currentColor); }
-}
-@keyframes confettiBurst{
-  0%{
-    transform: translate(0,0) rotate(0deg);
-    animation-timing-function: ease-out;
-  }
-  40%{
-    transform: translate(calc(var(--dx) * 0.6), var(--dy)) rotate(calc(var(--rot) * 0.5));
-    animation-timing-function: ease-in;
-  }
-  100%{
-    transform: translate(var(--dx), 100vh) rotate(var(--rot));
-  }
-}
 *{
   margin:0;
   padding:0;
@@ -89,7 +33,6 @@
 
 body{
   background:#fff;
-  overflow:hidden;
 }
 
 /*======================
@@ -307,54 +250,7 @@ h2{
   45%{ transform: scale(1.08); }
   60%{ transform: scale(1); }
 }
-/*======================
-LEAF LOADER
-=======================*/
 
-#leafLoader{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  overflow:hidden;
-}
-#leafKiri, #leafKanan{
-  position:absolute;
-  top:0;
-  height:100%;
-  width:52%;
-  will-change: transform;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #7a0000 0px,
-      #a80000 15px,
-      #d61f1f 30px,
-      #a80000 45px,
-      #7a0000 60px
-    );
-  box-shadow: inset -20px 0 40px rgba(0,0,0,.5), inset 20px 0 40px rgba(0,0,0,.3);
-  filter: blur(0.3px);
-}
-#leafKiri{
-  left:0;
-}
-#leafKanan{
-  right:0;
-}
-#leafKiri.open{
-  animation: curtainLeft 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-#leafKanan.open{
-  animation: curtainRight 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-@keyframes curtainLeft{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-100%); }
-}
-@keyframes curtainRight{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(100%); }
-}
 .bottomGif{
   width:240px;
   margin:16px auto 0;
@@ -368,14 +264,6 @@ LEAF LOADER
 </head>
 
 <body>
-
-<!-- Opening (daun) -->
-<div id="leafLoader">
-  <div id="leafKiri"></div>
-  <div id="leafKanan"></div>
-</div>
-
-  <div id="confettiContainer"></div>
 
 <!-- MAIN -->
 <div id="mainContent">
@@ -447,65 +335,7 @@ LEAF LOADER
 </div>
 
 <script>
-const loader = document.getElementById("leafLoader");
 const main = document.getElementById("mainContent");
-const leafKiri = document.getElementById("leafKiri");
-const leafKanan = document.getElementById("leafKanan");
-
-document.body.style.overflow = "hidden";
-
-function fireConfetti(){
-  const container = document.getElementById("confettiContainer");
-  const colors = ["#ff595e","#ffca3a","#8ac926","#1982c4","#6a4c93","#ff6fb5"];
-  const shapes = ["confetti-square", "confetti-circle", "confetti-star"];
-  const fragment = document.createDocumentFragment();
-
-  for(let i=0;i<100;i++){
-    const piece = document.createElement("div");
-    const shape = shapes[Math.floor(Math.random()*shapes.length)];
-    piece.className = "confetti-piece " + shape;
-
-    const fromLeft = i % 2 === 0;
-    piece.style.left = fromLeft ? "0px" : "auto";
-    piece.style.right = fromLeft ? "auto" : "0px";
-    piece.style.top = (10 + Math.random()*70) + "vh";
-
-    // bintang selalu emas, bentuk lain tetep random warna-warni
-    piece.style.background = (shape === "confetti-star")
-      ? "#FFD700"
-      : colors[Math.floor(Math.random()*colors.length)];
-
-    const distance = (10 + Math.random()*90) + "vw";
-    const dx = fromLeft ? distance : "-" + distance;
-    const dy = "-" + (20 + Math.random()*30) + "vh";
-    piece.style.setProperty("--dx", dx);
-    piece.style.setProperty("--dy", dy);
-    piece.style.setProperty("--rot", (Math.random()*720 - 360) + "deg");
-    piece.style.animationDelay = (Math.random()*0.15) + "s";
-    piece.addEventListener("animationend", ()=> piece.remove());
-    fragment.appendChild(piece);
-  }
-  container.appendChild(fragment);
-}
-// Buka daun kiri & kanan
-setTimeout(()=>{
-  leafKiri.classList.add("open");
-  leafKanan.classList.add("open");
-}, 500);
-
-setTimeout(()=>{
-  fireConfetti();
-}, 2300);
-
-// Hapus loader
-setTimeout(()=>{
-  loader.style.opacity = "0";
-  loader.style.transition = "0.6s ease";
-  setTimeout(()=>{
-    loader.remove();
-    document.body.style.overflow = "auto";
-  }, 600);
-}, 5000);
 
   function playClickSound(){
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
