@@ -184,9 +184,10 @@ h1{
 h2{
   font-family:'Baloo 2',sans-serif;
   color:#1a1a6e;
-  font-size:20px;
+  font-size:clamp(12px, 4.8vw, 20px);
   font-weight:700;
   margin:-5px 0 -2px;
+  white-space:nowrap;
 }
 
 .divider{
@@ -209,9 +210,67 @@ h2{
   width:65%;
 }
 
-.idCard img{
+.idCard img,
+.idCard video{
   width:100%;
   display:block;
+}
+
+/* ---------- ATURAN PERHITUNGAN & RATE REFUND ---------- */
+.rulesBox,
+.rateBox{
+  background:#FCFBD2;
+  border:6px solid #C8F7F2;
+  border-radius:20px;
+  padding:14px 16px;
+  margin:14px auto;
+  width:88%;
+  text-align:left;
+}
+
+.rulesBox h3,
+.rateBox h3{
+  font-family:'Baloo 2',sans-serif;
+  color:#1a1a6e;
+  font-size:16px;
+  margin-bottom:8px;
+  text-align:center;
+}
+
+.rulesBox ul,
+.rateBox ol{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.rulesBox li,
+.rateBox li{
+  font-size:13px;
+  color:#4a4a4a;
+  padding:5px 0;
+  border-bottom:1px dashed #d9c2d2;
+  display:flex;
+  gap:6px;
+}
+
+.rulesBox li:last-child,
+.rateBox li:last-child{
+  border-bottom:none;
+}
+
+.rateBox li b{
+  color:#e0195a;
+  font-weight:800;
+  flex-shrink:0;
+}
+
+.rateNote{
+  font-size:12px;
+  color:#e0195a;
+  font-weight:700;
+  text-align:center;
+  margin:10px 0 4px;
 }
 
 .arrowDown{
@@ -295,6 +354,12 @@ LEAF LOADER
   0%{ transform: translateX(0); }
   100%{ transform: translateX(100%); }
 }
+.bottomGif{
+  width:140px;
+  margin:16px auto 0;
+  display:block;
+}
+
 @media(max-width:500px){
   .profileCard{ padding:10px; }
 }
@@ -339,9 +404,30 @@ LEAF LOADER
       <div class="divider"></div>
 
       <div class="idCard">
-  <a href="https://you-deserve-this-maker.vercel.app/?c=W1si8J%2BMmSIsIkxhdGUgTmlnaHQgQ3VkZGxlcyIsIkJlaW5nIGFuIGFkdWx0IGlzIGxvbmVseS4gU3VrdXJpbiBkZWggbG8uLi4iXSxbIvCfjLEiLCJIZXkgdSEgS2VlcCBzcGlyaXQuIiwiQ3V6IFdlIGh2IHRvbW9ycm93IDRyIGEgcmVhc29uIF5eIl0sWyLwn42cIiwiQXlhbSBNaWUiLCJEaWFtIGJ1a2FuIGJlcmFydGkgbGVtYWgsIHRhcGkgbGFwZXIuIl0sWyLwn6e4IiwiQmlnIGh1ZyIsIlBlb3BsZSBrYWRhbmcgY29tZSBhbmQgcHJldC4uLiJdLFsi8J%2BMvCIsIkJlZ2dlZCIsIkN1a3VwIGFudGFydGlrYSBhamEgeWcgamF1aCwgYW50YXJraXRhIGphbmdhbi4uLiJdXQ%3D%3D" target="_blank">
-    <img src="ktp.mp4" autoplay loop muted playsinline></video>
+  <a href="https://you-deserve-this-maker.vercel.app/?c=W1si8J%2BMmSIsIkxhdGUgTmlnaHQgQ3VkZGxlcyIsIkJlaW5nIGFuIGFkdWx0IGlzIGxvbmVseS4gU3VrdXJpbiBkZWggbG8uLi4iXSxbIvCfjLEiLCJIZXkgdSEgS2VlcCBzcGlyaXQuIiwiQ3V6IFdlIGh2IHRvbW9ycm93IDRyIGEgcmVhc29uIF5eIl0sWyLwn41cIiwiQXlhbSBNaWUiLCJEaWFtIGJ1a2FuIGJlcmFydGkgbGVtYWgsIHRhcGkgbGFwZXIuIl0sWyLwn6e4IiwiQmlnIGh1ZyIsIlBlb3BsZSBrYWRhbmcgY29tZSBhbmQgcHJldC4uLiJdLFsi8J%2BMvCIsIkJlZ2dlZCIsIkN1a3VwIGFudGFydGlrYSBhamEgeWcgamF1aCwgYW50YXJraXRhIGphbmdhbi4uLiJdXQ%3D%3D" target="_blank">
+    <video src="ktp.mp4" autoplay loop muted playsinline></video>
   </a>
+      </div>
+
+      <div class="rulesBox">
+        <h3>Aturan Perhitungan</h3>
+        <ul>
+          <li>1 minggu = 5 hari</li>
+          <li>1 bulan = 25 hari</li>
+          <li>1 tahun = 240 hari</li>
+          <li>Lifetime = 365 hari</li>
+        </ul>
+        <p class="rateNote">Jangan lupa pake rate refund. (geser rate nya ya!)</p>
+      </div>
+
+      <div class="rateBox">
+        <h3>Rate Refund</h3>
+        <ol>
+          <li><b>0.70</b> = klo pemakaian kurang dari seminggu</li>
+          <li><b>0.60</b> = klo belum pernah claim garansi tapi udh lebih dari seminggu</li>
+          <li><b>0.55</b> = klo sudah pernah claim garansi 1x-3x</li>
+          <li><b>0.50</b> = klo sudah pernah claim garansi lebih dari 3x</li>
+        </ol>
       </div>
 
       <div class="divider dividerBottom"></div>
@@ -351,6 +437,9 @@ LEAF LOADER
       <a href="https://direfund.com/" class="openBtn">HITUNG DISINI</a>
 
     </div>
+
+    <!-- GANTI nama filenya dengan gif kamu -->
+    <img src="bawah.gif" class="bottomGif" alt="">
 
   </div>
 
