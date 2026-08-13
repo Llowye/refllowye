@@ -211,33 +211,13 @@ h2{
    margin-top:-10px;
   margin-bottom:-10px;
 }
-.openBtn{
-  display:inline-block;
-  background:#A3EFFF;
+
+  .openBtnText{
   color:#1a1a6e;
   font-weight:900;
-  text-decoration:none;
-  padding:12px 25px;
-  border-radius:40px;
-  border:6px solid #fff;
-  box-shadow:0 8px 0 #6bc4ea, 0 10px 15px rgba(0,0,0,.2);
-  transition:.15s;
   margin-top:-10px;
   margin-bottom:20px;
-  animation: heartbeat 1.2s ease-in-out infinite;
-}
-
-.openBtn:active{
-  transform:translateY(8px);
-  box-shadow:0 0 0 #2aa9d1;
-}
-@keyframes heartbeat{
-  0%, 100%{ transform: scale(1); }
-  15%{ transform: scale(1.08); }
-  30%{ transform: scale(1); }
-  45%{ transform: scale(1.08); }
-  60%{ transform: scale(1); }
-}
+  }
 
 .bottomGif{
   width:300px;
@@ -287,7 +267,6 @@ h2{
           <li>1 tahun = 240 hari</li>
           <li>Lifetime = 365 hari</li>
         </ul>
-        <p class="rateNote">Jangan lupa pake rate refund ya!</p>
       </div>
 
       <div class="rateBox">
@@ -300,13 +279,13 @@ h2{
         </ol>
       </div>
 
+      <p class="rateNote">Jangan lupa pake rate refund ya!</p>
+
       <div class="divider dividerBottom"></div>
 
       <div class="arrowDown">﹀</div>
 
-      <a href="https://kalkulator.llowyeshop.my.id" class="openBtn">HITUNG DISINI</a>
-
-    </div>
+      <p class="openBtnText">HITUNG DISINI</p>
 
     <!-- GANTI nama filenya dengan gif kamu -->
     <img src="bawah.gif" class="bottomGif" alt="">
@@ -332,13 +311,6 @@ const main = document.getElementById("mainContent");
   osc.stop(ctx.currentTime + 0.08);
 }
 
-const openBtn = document.querySelector(".openBtn");
-if(openBtn){
-  openBtn.addEventListener("click", ()=>{
-    playClickSound();
-    openBtn.style.animation = "none";
-  });
-}
 const closeBtn = document.querySelector(".closeBtn");
 if(closeBtn){
   closeBtn.addEventListener("click", ()=>{
