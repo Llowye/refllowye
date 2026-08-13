@@ -229,6 +229,10 @@ h2{
   .profileCard{ padding:10px; }
 }
 
+  .calcFooter{
+  margin-top:16px; font-size:12px; color:#1a1a1a; text-align:center; opacity:0.7;
+  }
+
   .calcCard{
   background:#F4FCF6;
   border:1px solid #BFE3C7;
@@ -327,13 +331,13 @@ h2{
       <div class="calcCard">
 
         <label for="hargaBeli">Harga Beli (Rp)</label>
-        <input type="number" id="hargaBeli" placeholder="Contoh: 50000">
+        <input type="number" id="hargaBeli" placeholder="Contoh: 25000 (engga pake titik ya)">
 
         <label for="sisaHari">Sisa Masa Aktif (Hari)</label>
-        <input type="number" id="sisaHari" placeholder="Contoh: 20">
+        <input type="number" id="sisaHari" placeholder="Contoh: 15">
 
         <label for="totalDurasi">Total Durasi Pembelian (Hari)</label>
-        <input type="number" id="totalDurasi" placeholder="Contoh: 25">
+        <input type="number" id="totalDurasi" placeholder="Contoh: 25 (kalo beli bulanan)">
 
         <label for="rateRefund">Rate Refund</label>
         <select id="rateRefund">
@@ -352,6 +356,8 @@ h2{
           <h2>Hasil Refund</h2>
           <div class="angka" id="hasilRefund">-</div>
         </div>
+
+        <p class="calcFooter">Made by Anis</p>
       </div>
 
     <!-- GANTI nama filenya dengan gif kamu -->
