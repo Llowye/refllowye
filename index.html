@@ -228,6 +228,43 @@ h2{
 @media(max-width:500px){
   .profileCard{ padding:10px; }
 }
+
+  .calcCard{
+  background:#F4FCF6;
+  border:1px solid #BFE3C7;
+  border-radius:16px;
+  padding:22px;
+  width:100%; max-width:380px;
+  margin:10px auto 0;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+.calcTitle{
+  font-size:18px; margin-bottom:16px; text-align:center; color:#1a1a1a;
+}
+.calcCard label{
+  display:block; font-size:13px; font-weight:500; color:#1a1a1a;
+  margin-bottom:6px; margin-top:14px;
+}
+.calcCard label:first-of-type{margin-top:0;}
+.calcCard input, .calcCard select{
+  width:100%; padding:10px 12px; font-size:14px;
+  border:1px solid #A9DAB4; border-radius:10px;
+  background:#FFFFFF; color:#1a1a1a;
+}
+.calcCard button{
+  width:100%; margin-top:20px; padding:12px;
+  background:#000000; color:#EAF8EC;
+  font-weight:500; font-size:15px;
+  border:none; border-radius:999px; cursor:pointer;
+}
+.calcCard button:active{transform:scale(0.97);}
+.calcCard .hasil-box{
+  margin-top:20px; padding:16px;
+  background:#EAF8EC; border:1px dashed #7FC98D;
+  border-radius:12px; text-align:center;
+}
+.calcCard .hasil-box h2{font-size:13px; color:#1a1a1a; margin-bottom:6px;}
+.calcCard .hasil-box .angka{font-size:22px; font-weight:600; color:#1a1a1a;}
 </style>
 </head>
 
@@ -287,6 +324,36 @@ h2{
 
       <p class="openBtnText">HITUNG DISINI</p>
 
+      <div class="calcCard">
+
+        <label for="hargaBeli">Harga Beli (Rp)</label>
+        <input type="number" id="hargaBeli" placeholder="Contoh: 50000">
+
+        <label for="sisaHari">Sisa Masa Aktif (Hari)</label>
+        <input type="number" id="sisaHari" placeholder="Contoh: 20">
+
+        <label for="totalDurasi">Total Durasi Pembelian (Hari)</label>
+        <input type="number" id="totalDurasi" placeholder="Contoh: 25">
+
+        <label for="rateRefund">Rate Refund</label>
+        <select id="rateRefund">
+          <option value="0.70">0.70 — Pemakaian kurang dari seminggu</option>
+          <option value="0.60">0.60 — Belum pernah claim garansi, lebih dari seminggu</option>
+          <option value="0.55">0.55 — Sudah pernah claim garansi 1x-3x</option>
+          <option value="0.50">0.50 — Sudah pernah claim garansi lebih dari 3x</option>
+        </select>
+
+        <label for="diskon">Diskon Tambahan (%)</label>
+        <input type="number" id="diskon" placeholder="Contoh: 0" value="0">
+
+        <button type="button" onclick="hitungRefund()">Hitung</button>
+
+        <div class="hasil-box">
+          <h2>Hasil Refund</h2>
+          <div class="angka" id="hasilRefund">-</div>
+        </div>
+      </div>
+
     <!-- GANTI nama filenya dengan gif kamu -->
     <img src="bawah.gif" class="bottomGif" alt="">
 
@@ -295,6 +362,28 @@ h2{
 </div>
 
 <script>
+
+  function hitungRefund(){
+  const hargaBeli = parseFloat(document.getElementById('hargaBeli').value) || 0;
+  const sisaHari = parseFloat(document.getElementById('sisaHari').value) || 0;
+  const totalDurasi = parseFloat(document.getElementById('totalDurasi').value) || 0;
+  const rate = parseFloat(document.getElementById('rateRefund').value) || 0;
+  const diskon = parseFloat(document.getElementById('diskon').value) || 0;
+
+  const hasilEl = document.getElementById('hasilRefund');
+
+  if(totalDurasi <= 0){
+    hasilEl.textContent = "Total durasi harus diisi ya!";
+    return;
+  }
+
+  let refund = (hargaBeli / totalDurasi) * sisaHari * rate;
+  refund = refund - (refund * (diskon / 100));
+  refund = Math.max(0, Math.round(refund));
+
+  hasilEl.textContent = "Rp " + refund.toLocaleString('id-ID');
+  }
+  
 const main = document.getElementById("mainContent");
 
   function playClickSound(){
